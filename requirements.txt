@@ -1,0 +1,5 @@
+Django==1.11.8
+dj-database-url==0.4.2
+dj-static==0.0.6
+django-bootstrap-form==3.3
+python-decouple==3.1

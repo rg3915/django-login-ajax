@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1>Bem vindo ao site!</h1>
+    <p>Este é um exemplo de como fazer Login via Ajax.</p>
+    {% if user.is_authenticated %}
+      <p>Olá {{ user }}</p>
+       <a href="{% url 'logout' %}" class="btn btn-default">Sair</a>
+    {% else %}
+       <a href="#LoginModal" role="button" data-toggle="modal" class="btn btn-default">Login</a>
+    {% endif %}
+
+    
+    <div class="modal fade" id="LoginModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+             
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              ×
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+              Login
+            </h4>
+          </div>
+          <form id="loginForm" action="." method="POST">
+            <div class="modal-body">
+              {% csrf_token %}
+              {{ form|bootstrap }}
+            </div>
+            <div class="modal-footer">
+              <input type="submit" class="btn btn-primary" value="Acessar" />
+            </div>
+          </form>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+</div>
+
+{% endblock content %}
+
+
+{% block js %}
+
+<script src="{% static 'js/django-ajax-setup.js' %}"></script>
+
+<!-- Login with Ajax -->
+<script>
+  $('#loginForm').on('submit', function(e) {
+    $.ajax({
+      url: this.action,
+      type: "POST",
+      dataType: 'json',
+      data: {
+        id_username: $('#id_username').val(),
+        id_password: $('#id_password').val()
+      },
+      success: function(response) {
+        location.reload();
+      },
+      error: function(xhr, errmsg, err) {
+        // body...
+      },
+    });
+    e.preventDefault()
+  });
+
+</script>
+
+{% endblock js %}

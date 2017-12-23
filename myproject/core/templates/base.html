@@ -1,0 +1,41 @@
+<html>
+<head>
+
+  {% block title %}
+      <title>Login | Ajax</title>
+  {% endblock title %}
+
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <link rel="icon" href="http://s3.amazonaws.com/snaaakes-static/img/colophon/django.png">
+
+  <!-- Latest JQuery -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <style>
+    body {
+      padding-top: 70px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  {% include "nav.html" %}
+
+  <div class="container">
+    {% block content %}
+
+    {% endblock content %}
+  </div>
+
+  {% block js %}
+    
+  {% endblock js %}
+
+</body>
+</html>
