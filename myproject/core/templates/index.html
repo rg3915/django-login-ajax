@@ -57,15 +57,12 @@
       url: this.action,
       type: "POST",
       dataType: 'json',
-      data: {
-        id_username: $('#id_username').val(),
-        id_password: $('#id_password').val()
-      },
+      data: $(this).serialize(),
       success: function(response) {
         location.reload();
       },
-      error: function(xhr, errmsg, err) {
-        // body...
+      error: function(response) {
+        console.log(response);
       },
     });
     e.preventDefault()
